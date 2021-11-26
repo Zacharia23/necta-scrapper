@@ -1,7 +1,14 @@
+from unicodedata import name
+from flask import render_template, redirect, url_for
 from app import app
+import datetime
 
-@app.route('/')
-@app.route('/index')
+@app.route("/<name>")
+def home(name):
+    year = getYear()
+    return render_template('index.html', year = year)
 
-def index():
-    return "Hello World!"
+def getYear():
+    current_date = datetime.datetime.now()
+    date = current_date.date()
+    return date.strftime("%Y")
