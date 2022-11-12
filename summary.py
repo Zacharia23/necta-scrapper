@@ -66,7 +66,7 @@ def summary(year, exam_type, school_number):
     else:
         raise Exception(f"Failed to access {url}\nResponse Code {data.status_code}")
 
-    return f'{summary}'
+    return summary
 
 
 def set_zero(summary):

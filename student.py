@@ -1,4 +1,4 @@
-import requests
+import requests, json
 from bs4 import BeautifulSoup
 
 from summary import summary
@@ -52,17 +52,16 @@ def student(year, exam_type, school_number, student_number):
 
     if data.status_code == 200:
         s = summary(year, exam_type, school_number)
-        for key, value in s.items():
-            student_data = {
-                "examination_number": f"{school_number.upper()}/{student_number}",
-                "year_of_exam": year,
-                "exam_type": exam_type,
-                "gender": "*",
-                "school_name": value,
-                "division": "*",
-                "points": "*",
-                "subjects": {}
-            }
+        student_data = {
+            "examination_number": f"{school_number.upper()}/{student_number}",
+            "year_of_exam": year,
+            "exam_type": exam_type,
+            "gender": "*",
+            "school_name": s.get('school_name'),
+            "division": "*",
+            "points": "*",
+            "subjects": {}
+        }
 
         found = False
 
