@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h2>Necta Result Search </h2>
+<form action="\results" method="POST">
+    <div>
+        <label> Search Type </label>
+        <select name="search" id="search" required>
+            <option>Summary</option>
+            <option>Schools</option>
+            <option>Student</option>
+            <option>Students</option>
+        </select>
+    </div>
+    <p></p>
+    <input type="text" name="School_Year" id="School_Year" placeholder="Year" required>
+    <input type="text" name="Exam_Type" id="Exam_Type" placeholder="Exam Type" required>
+    <input type="text" name="School_Number" id="School_Number" placeholder="School Number" required>
+    <input type="text" name="Student_Number" id="Student_Number" placeholder="Student Number" required>
+
+    <button type="submit" value="Submit"> Search </button>
+
+    <p>{{ res }}</p>
+{#    <ul>#}
+{#         {% for key, value in res.items() %}#}
+{#            <li>#}
+{#              <ul>{{ value }}</ul>#}
+{#            </li>#}
+{#    {% endfor %}#}
+{#    </ul>#}
+
+</form>
+</body>
+</html>
