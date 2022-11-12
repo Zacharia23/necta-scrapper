@@ -52,17 +52,17 @@ def student(year, exam_type, school_number, student_number):
 
     if data.status_code == 200:
         s = summary(year, exam_type, school_number)
-        print(s['school_name'])
-        student_data = {
-            "examination_number": f"{school_number.upper()}/{student_number}",
-            "year_of_exam": year,
-            "exam_type": exam_type,
-            "gender": "*",
-            "school_name": s["school_name"],
-            "division": "*",
-            "points": "*",
-            "subjects": {}
-        }
+        for key, value in s.items():
+            student_data = {
+                "examination_number": f"{school_number.upper()}/{student_number}",
+                "year_of_exam": year,
+                "exam_type": exam_type,
+                "gender": "*",
+                "school_name": value,
+                "division": "*",
+                "points": "*",
+                "subjects": {}
+            }
 
         found = False
 
