@@ -9,22 +9,21 @@ def student(year, exam_type, school_number, student_number):
     url = ""
     exam_type = exam_type.lower()
     school_number = school_number.lower()
-    year = int(year)
     index = 0
-
+    print(f"{exam_type} {year} {school_number} {student_number}")
     if exam_type == 'acsee':
-        if year == 2022:
+        if int(year) == 2022:
             url = f"https://matokeo.necta.go.tz/acsee2022/results/{school_number}.htm"
         else:
             url = f"https://onlinesys.necta.go.tz/results/{year}/acsee/results/{school_number}.htm"
 
         if school_number.startswith('p'):
-            if year > 2019:
+            if int(year) > 2019:
                 index = 1
             else:
                 index = 0
         else:
-            if year > 2019:
+            if int(year) > 2019:
                 index = 2
             else:
                 index = 0
@@ -37,12 +36,12 @@ def student(year, exam_type, school_number, student_number):
             url = f"https://onlinesys.necta.go.tz/results/{year}/csee/{school_number}.htm"
 
         if school_number.startswith('p'):
-            if year > 2018:
+            if int(year) > 2018:
                 index = 1
             else:
                 index = 0
         else:
-            if year > 2018:
+            if int(year) > 2018:
                 index = 2
             else:
                 index = 0
@@ -84,4 +83,4 @@ def student(year, exam_type, school_number, student_number):
         else:
             return student_data
     else:
-        raise Exception(f"failed to connect to server \n Error Code {data.status_code}")
+        raise Exception(f"failed to connect to student server \n Error Code {data.status_code}")
