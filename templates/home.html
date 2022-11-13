@@ -12,7 +12,7 @@
             <div class="mx-auto max-w-3xl py-12 px-4 sm:px-6 lg:max-w-7xl lg:px-8">
                 <div class="relative flex flex-wrap items-center justify-center lg:justify-between">
                      <div class="absolute left-0 flex-shrink-0 py-5 lg:static">
-                         <h1 class="text-4xl font-semibold  text-white"> Necta Tokeo Crawler </h1>
+                         <h1 class="text-4xl font-semibold  text-white"> Necta Web Crawler </h1>
                      </div>
                     <div class="w-full py-5 lg:border-t lg:border-white lg:border-opacity-20"></div>
                 </div>
@@ -62,33 +62,142 @@
                                             </div>
                                         </div>
                                         <div class="mt-5">
-                                            <button type="submit" value="Submit" class="w-full inline-flex justify-center rounded-sm border border-transparent bg-teal-600 py-3 px-4 text-base font-medium text-white shadow-sm hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2"> Search  </button>
+                                            <button type="submit" value="Submit" class="w-full inline-flex justify-center rounded-sm border border-transparent bg-sky-600 py-3 px-4 text-base font-medium text-white shadow-sm hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2"> Search  </button>
                                         </div>
 
                                     </form>
                                 </div>
 
-
                             </div>
+
+                            {% if stype == 'Summary' %}
+
+                                <div class="px-2 sm:px-3 lg:px-4 mt-10">
+                                  <div class="sm:flex sm:items-center">
+                                    <div class="sm:flex-auto">
+                                      <h1 class="text-xl font-semibold text-gray-900"> School Results Summary </h1>
+                                      <p class="mt-2 text-sm text-gray-700">A list of all the users in your account including their name, title, email and role.</p>
+                                    </div>
+
+                                  </div>
+                                  <div class="mt-8 flex flex-col">
+                                    <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                                      <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+                                        <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+                                          <table class="min-w-full divide-y divide-gray-300">
+                                            <thead class="bg-gray-50">
+                                              <tr>
+                                                <th scope="col" class="py-3 pl-4 pr-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500 sm:pl-6">Title</th>
+                                                <th scope="col" class="py-3 pl-4 pr-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500 sm:pl-6">Value</th>
+                                              </tr>
+                                            </thead>
+                                            <tbody class="divide-y divide-gray-200 bg-white">
+                                             {% for key, value in res.items() %}
+                                                  <tr>
+                                                    <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm font-medium text-gray-500 sm:pl-6">{{ key }}</td>
+                                                    <td class="whitespace-nowrap px-3 py-2 text-base text-gray-900">{{ value }}</td>
+
+                                                  </tr>
+                                             {% endfor %}
+                                            </tbody>
+                                          </table>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                {% elif stype == 'Schools' %}
+
+                                <div class="px-2 sm:px-3 lg:px-4 mt-10">
+                                  <div class="sm:flex sm:items-center">
+                                    <div class="sm:flex-auto">
+                                      <h1 class="text-xl font-semibold text-gray-900"> Total Schools - {{ res['year_of_exam'] }}</h1>
+                                      <p class="mt-2 text-base text-gray-700">Exam {{ res['exam_type'] }}. No of Schools {{ res['number_of_schools'] }}</p>
+                                      <p class="mt-2 text-sm text-gray-700"> {{ res['description'] }}</p>
+                                    </div>
+
+                                  </div>
+                                  <div class="mt-8 flex flex-col">
+                                    <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                                      <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+                                        <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+                                          <table class="min-w-full divide-y divide-gray-300">
+                                            <thead class="bg-gray-50">
+                                              <tr>
+                                                <th scope="col" class="py-3 pl-4 pr-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500 sm:pl-6">School Number</th>
+                                                <th scope="col" class="py-3 pl-4 pr-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500 sm:pl-6">School Name</th>
+                                              </tr>
+                                            </thead>
+                                            <tbody class="divide-y divide-gray-200 bg-white">
+                                             {% for item in res['schools'] %}
+                                                  <tr>
+                                                    <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm font-medium text-gray-500 sm:pl-6">{{ item.school_number }}</td>
+                                                    <td class="whitespace-nowrap px-3 py-2 text-base text-gray-900">{{ item.school_name }}</td>
+
+                                                  </tr>
+                                             {% endfor %}
+                                            </tbody>
+                                          </table>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                {% elif stype == 'Student' %}
+                                    {# {{ stype }} : {{ res}}#}
+                                {#  examination_number, year_of_exam, exam_type, gender, school_name, division, points, subjects #}
+                                        <div class="px-2 sm:px-3 lg:px-4 mt-10">
+                                  <div class="sm:flex sm:items-center">
+                                    <div class="sm:flex-auto">
+                                      <h1 class="text-xl font-semibold text-gray-900"> Student - {{ res['examination_number'] }}</h1>
+                                      <p class="mt-2 text-base text-gray-700 uppercase"> {{ res['exam_type'] }} • {{ res['school_name'] }} | Division {{ res['division'] }} • Points: {{ res['points'] }}</p>
+
+                                    </div>
+
+                                  </div>
+                                  <div class="mt-8 flex flex-col">
+                                    <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                                      <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+                                        <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+                                          <table class="min-w-full divide-y divide-gray-300">
+                                            <thead class="bg-gray-50">
+                                              <tr>
+                                                <th scope="col" class="py-3 pl-4 pr-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500 sm:pl-6">Subject</th>
+                                                <th scope="col" class="py-3 pl-4 pr-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500 sm:pl-6">Grade</th>
+                                              </tr>
+                                            </thead>
+                                            <tbody class="divide-y divide-gray-200 bg-white">
+                                             {% for key, value in res['subjects'].items() %}
+                                                 <tr>
+                                                    <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm font-medium text-gray-500 sm:pl-6"> {{ key }} </td>
+                                                    <td class="whitespace-nowrap px-3 py-2 text-base text-gray-900">{{ value }}</td>
+                                                 </tr>
+                                             {% endfor %}
+                                            </tbody>
+                                          </table>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                {% elif stype == 'Students' %}
+                                    {{ res }}
+
+                                {% endif %}
+
                         </div>
 
                     </div>
                 </div>
 
             </div>
-            {% if stype == 'Summary' %}
-                {{ stype }}
-            {% endif %}
+
         </main>
     </div>
 
-{#    <ul class="mt-5">#}
-{#         {% for key, value in res.items() %}#}
-{#            <li>#}
-{#              <ul>{{ key }} - {{ value }}</ul>#}
-{#            </li>#}
-{#    {% endfor %}#}
-{#    </ul>#}
 
 </body>
 </html>

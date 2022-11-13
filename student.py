@@ -8,14 +8,16 @@ from students import split_after
 def student(year, exam_type, school_number, student_number):
     url = ""
     exam_type = exam_type.lower()
-    school_number = school_number.lower()
+    school_number = school_number.lower().strip()
     index = 0
     print(f"{exam_type} {year} {school_number} {student_number}")
     if exam_type == 'acsee':
         if int(year) == 2022:
             url = f"https://matokeo.necta.go.tz/acsee2022/results/{school_number}.htm"
+            print(url)
         else:
             url = f"https://onlinesys.necta.go.tz/results/{year}/acsee/results/{school_number}.htm"
+            print(url)
 
         if school_number.startswith('p'):
             if int(year) > 2019:
