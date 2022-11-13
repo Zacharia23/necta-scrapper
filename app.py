@@ -32,7 +32,7 @@ def results():
     elif search_type == 'Students':
         out_results = students(year, exam_type, school_number)
 
-    return render_template('home.html', res=out_results)
+    return render_template('home.html', res=out_results, stype=search_type)
 
 
 if __name__ == '__main__':

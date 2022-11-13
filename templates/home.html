@@ -6,27 +6,82 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='dist/css/output.css')}}" />
 </head>
 
-<body class="antialiased">
-    <h1 class="text-blue-600">Necta Result Search </h1>
-<form action="\results" method="POST">
-    <div>
-        <label> Search Type </label>
-        <select name="search" id="search" required>
-            <option>Summary</option>
-            <option>Schools</option>
-            <option>Student</option>
-            <option>Students</option>
-        </select>
+<body class="antialiased h-full bg-gray-100">
+    <div class="min-h-full">
+        <header class="bg-gradient-to-r from-sky-800 to-cyan-600 pb-24">
+            <div class="mx-auto max-w-3xl py-12 px-4 sm:px-6 lg:max-w-7xl lg:px-8">
+                <div class="relative flex flex-wrap items-center justify-center lg:justify-between">
+                     <div class="absolute left-0 flex-shrink-0 py-5 lg:static">
+                         <h1 class="text-4xl font-semibold  text-white"> Necta Tokeo Crawler </h1>
+                     </div>
+                    <div class="w-full py-5 lg:border-t lg:border-white lg:border-opacity-20"></div>
+                </div>
+            </div>
+        </header>
+
+        <main class="-mt-32 pb-8">
+            <div class="mx-auto max-w-3xl px-1 sm:px-3 lg:max-w-7xl lg:px-4">
+                <div class="mx-auto max-w-3xl px-2 sm:px-3 lg:max-w-7xl lg:px-4">
+                    <div class="grid grid-cols-1 items-start gap-4 lg:grid-cols-1 lg:gap-8">
+                        {# Left Side Section #}
+                        <div class="grid grid-cols-1 gap-4 lg:col-span-2">
+                            <div class="overflow-hidden rounded-lg bg-white shadow">
+                                <div class="bg-white p-3">
+                                     <h2 class="text-xl font-teal-600"> Necta Result Search </h2>
+                                    <form action="\results" method="POST" class="mt-5">
+                                        <div>
+                                            <label class="block text-sm font-medium text-gray-700"> Search Criteria </label>
+                                            <select name="search" id="search" class="block w-full rounded-sm border-gray-300 text-base shadow-sm focus:border-teal-500 focus:ring-teal-500 sm:text-base" required>
+                                                <option>Summary</option>
+                                                <option>Schools</option>
+                                                <option>Student</option>
+                                                <option>Students</option>
+                                            </select>
+                                        </div>
+                                        <div class="grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-8 mt-2">
+                                            <div class="mt-2 sm:col-span-2">
+                                                <label class="block text-sm font-medium text-gray-700"> Result Year </label>
+                                                <input type="text" name="School_Year" id="School_Year" placeholder="Year" class="block w-full rounded-sm border-gray-300 text-base shadow-sm focus:border-teal-500 focus:ring-teal-500 sm:text-base" required>
+                                            </div>
+                                            <div class="mt-2 sm:col-span-2">
+                                                <label class="block text-sm font-medium text-gray-700"> Exam Type </label>
+                                                <select  name="Exam_Type" id="Exam_Type" class="block w-full rounded-sm border-gray-300 text-base shadow-sm focus:border-teal-500 focus:ring-teal-500 sm:text-base">
+                                                    <option> ACSEE </option>
+                                                    <option> CSEE </option>
+                                                </select>
+                                            </div>
+                                            <div class="mt-2 sm:col-span-2">
+                                                <label class="block text-sm font-medium text-gray-700"> School Number </label>
+                                                <input type="text" name="School_Number" id="School_Number" placeholder="School Number" class="block w-full rounded-sm border-gray-300 text-base shadow-sm focus:border-teal-500 focus:ring-teal-500 sm:text-base" required>
+
+                                            </div>
+                                            <div class="mt-2 sm:col-span-2">
+                                                <label class="block text-sm font-medium text-gray-700"> Student Number </label>
+                                                <input type="text" name="Student_Number" id="Student_Number" placeholder="Student Number" class="block w-full rounded-sm border-gray-300 text-base shadow-sm focus:border-teal-500 focus:ring-teal-500 sm:text-base" required>
+
+                                            </div>
+                                        </div>
+                                        <div class="mt-5">
+                                            <button type="submit" value="Submit" class="w-full inline-flex justify-center rounded-sm border border-transparent bg-teal-600 py-3 px-4 text-base font-medium text-white shadow-sm hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2"> Search  </button>
+                                        </div>
+
+                                    </form>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            {% if stype == 'Summary' %}
+                {{ stype }}
+            {% endif %}
+        </main>
     </div>
-    <p></p>
-    <input type="text" name="School_Year" id="School_Year" placeholder="Year" required>
-    <input type="text" name="Exam_Type" id="Exam_Type" placeholder="Exam Type" required>
-    <input type="text" name="School_Number" id="School_Number" placeholder="School Number" required>
-    <input type="text" name="Student_Number" id="Student_Number" placeholder="Student Number" required>
 
-    <button type="submit" value="Submit" class="inline-block rounded-lg bg-teal-600 px-4 py-1.5 text-base font-semibold leading-7 text-white shadow-sm ring-1 ring-teal-600 hover:bg-teal-700 hover:ring-teal-700"> Search </button>
-
-    <p class="mt-3">{{ res }}</p>
 {#    <ul class="mt-5">#}
 {#         {% for key, value in res.items() %}#}
 {#            <li>#}
@@ -35,6 +90,5 @@
 {#    {% endfor %}#}
 {#    </ul>#}
 
-</form>
 </body>
 </html>
