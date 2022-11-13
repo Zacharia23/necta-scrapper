@@ -3,6 +3,7 @@ from flask_cors import cross_origin
 from summary import summary
 from schools import schools
 from student import student
+from students import students
 
 app = Flask(__name__, template_folder='templates')
 
@@ -28,6 +29,8 @@ def results():
         out_results = schools(year, exam_type)
     elif search_type == 'Student':
         out_results = student(year, exam_type, school_number, student_number)
+    elif search_type == 'Students':
+        out_results = students(year, exam_type, school_number)
 
     return render_template('home.html', res=out_results)
 
