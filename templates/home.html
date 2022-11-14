@@ -25,7 +25,7 @@
                     <div class="grid grid-cols-1 items-start gap-4 lg:grid-cols-1 lg:gap-8">
                         {# Left Side Section #}
                         <div class="grid grid-cols-1 gap-4 lg:col-span-2">
-                            <div class="overflow-hidden rounded-lg bg-white shadow">
+                            <div class="overflow-hidden rounded-sm bg-white shadow">
                                 <div class="bg-white p-3">
                                      <h2 class="text-xl font-teal-600"> Necta Result Search </h2>
                                     <form action="\results" method="POST" class="mt-5">
@@ -83,7 +83,7 @@
                                   <div class="mt-8 flex flex-col">
                                     <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
                                       <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-                                        <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+                                        <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-sm">
                                           <table class="min-w-full divide-y divide-gray-300">
                                             <thead class="bg-gray-50">
                                               <tr>
@@ -121,7 +121,7 @@
                                   <div class="mt-8 flex flex-col">
                                     <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
                                       <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-                                        <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+                                        <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-sm">
                                           <table class="min-w-full divide-y divide-gray-300">
                                             <thead class="bg-gray-50">
                                               <tr>
@@ -149,42 +149,83 @@
                                     {# {{ stype }} : {{ res}}#}
                                 {#  examination_number, year_of_exam, exam_type, gender, school_name, division, points, subjects #}
                                         <div class="px-2 sm:px-3 lg:px-4 mt-10">
-                                  <div class="sm:flex sm:items-center">
-                                    <div class="sm:flex-auto">
-                                      <h1 class="text-xl font-semibold text-gray-900"> Student - {{ res['examination_number'] }}</h1>
-                                      <p class="mt-2 text-base text-gray-700 uppercase"> {{ res['exam_type'] }} • {{ res['school_name'] }} | Division {{ res['division'] }} • Points: {{ res['points'] }}</p>
+                                          <div class="sm:flex sm:items-center">
+                                            <div class="sm:flex-auto">
+                                              <h1 class="text-xl font-semibold text-gray-900"> Student - {{ res['examination_number'] }}</h1>
+                                              <p class="mt-2 text-base text-gray-700 uppercase"> {{ res['exam_type'] }} • {{ res['school_name'] }} | Division {{ res['division'] }} • Points: {{ res['points'] }}</p>
 
-                                    </div>
+                                            </div>
 
-                                  </div>
-                                  <div class="mt-8 flex flex-col">
-                                    <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
-                                      <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-                                        <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
-                                          <table class="min-w-full divide-y divide-gray-300">
-                                            <thead class="bg-gray-50">
-                                              <tr>
-                                                <th scope="col" class="py-3 pl-4 pr-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500 sm:pl-6">Subject</th>
-                                                <th scope="col" class="py-3 pl-4 pr-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500 sm:pl-6">Grade</th>
-                                              </tr>
-                                            </thead>
-                                            <tbody class="divide-y divide-gray-200 bg-white">
-                                             {% for key, value in res['subjects'].items() %}
-                                                 <tr>
-                                                    <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm font-medium text-gray-500 sm:pl-6"> {{ key }} </td>
-                                                    <td class="whitespace-nowrap px-3 py-2 text-base text-gray-900">{{ value }}</td>
-                                                 </tr>
-                                             {% endfor %}
-                                            </tbody>
-                                          </table>
+                                          </div>
+                                          <div class="mt-8 flex flex-col">
+                                            <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                                              <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+                                                <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-sm">
+                                                  <table class="min-w-full divide-y divide-gray-300">
+                                                    <thead class="bg-gray-50">
+                                                      <tr>
+                                                        <th scope="col" class="py-3 pl-4 pr-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500 sm:pl-6">Subject</th>
+                                                        <th scope="col" class="py-3 pl-4 pr-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500 sm:pl-6">Grade</th>
+                                                      </tr>
+                                                    </thead>
+                                                    <tbody class="divide-y divide-gray-200 bg-white">
+                                                     {% for key, value in res['subjects'].items() %}
+                                                         <tr>
+                                                            <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm font-medium text-gray-500 sm:pl-6"> {{ key }} </td>
+                                                            <td class="whitespace-nowrap px-3 py-2 text-base text-gray-900">{{ value }}</td>
+                                                         </tr>
+                                                     {% endfor %}
+                                                    </tbody>
+                                                  </table>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
                                         </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
 
                                 {% elif stype == 'Students' %}
-                                    {{ res }}
+                                 <div class="border-b border-gray-200 pb-5">
+                                        <div class="">
+                                          <h1 id="message-heading" class="text-2xl font-bold text-sky-700">{{ res['school_name'] }} - {{ res['school_number'] }}</h1>
+                                          <p class="mt-1 truncate text-base text-gray-500">{{ res['year_of_exam'] }} {{ res['exam_type'] }} Results • Total Students {{ res['number_of_students'] }}</p>
+                                        </div>
+                                    </div>
+                                    {% for item in res['students'] %}
+                                          <div class="px-2 sm:px-3 lg:px-4 mt-10">
+                                              <div class="sm:flex sm:items-center">
+                                                <div class="sm:flex-auto">
+                                                  <h1 class="text-lg font-semibold text-gray-800"> Student No. {{ item['examination_number'] }}</h1>
+                                                  <p class="mt-2 text-base text-gray-700 uppercase"> Gender {{ item['gender'] }} • Division {{ item['division'] }} • Points: {{ item['points'] }}</p>
+
+                                                </div>
+
+                                              </div>
+                                              <div class="mt-2 flex flex-col">
+                                                <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                                                  <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+                                                    <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-sm">
+                                                      <table class="min-w-full divide-y divide-gray-300">
+                                                        <thead class="bg-gray-50">
+                                                          <tr>
+                                                            <th scope="col" class="py-3 pl-4 pr-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500 sm:pl-6">Subject</th>
+                                                            <th scope="col" class="py-3 pl-4 pr-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500 sm:pl-6">Grade</th>
+                                                          </tr>
+                                                        </thead>
+                                                        <tbody class="divide-y divide-gray-200 bg-white">
+                                                         {% for key, value in item['subjects'].items() %}
+                                                             <tr>
+                                                                <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm font-medium text-gray-500 sm:pl-6"> {{ key }} </td>
+                                                                <td class="whitespace-nowrap px-3 py-2 text-base text-gray-900">{{ value }}</td>
+                                                             </tr>
+                                                         {% endfor %}
+                                                        </tbody>
+                                                      </table>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                        </div>
+                                    {% endfor %}
 
                                 {% endif %}
 
